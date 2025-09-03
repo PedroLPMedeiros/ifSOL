@@ -22,22 +22,65 @@ export default defineType({
       ],
     }),
     defineField({
-      name: 'aboutSections',
-      title: 'Seções de Descrição',
+  name: 'aboutSections',
+  title: 'Seções Sobre o Projeto',
+  type: 'array',
+  of: [
+    {
+      type: 'object',
+      name: 'singleImageBlock',
+      title: 'Bloco de Imagem Única',
+      fields: [
+        defineField({ name: 'heading', title: 'Título', type: 'string' }),
+        defineField({ name: 'content', title: 'Conteúdo', type: 'array', of: [{ type: 'block' }] }),
+        defineField({ name: 'image', title: 'Imagem', type: 'image' }),
+      ],
+    },
+    {
+      type: 'object',
+      name: 'multiImageBlock',
+      title: 'Bloco de Múltiplas Imagens',
+      fields: [
+        defineField({ name: 'heading', title: 'Título', type: 'string' }),
+        defineField({ name: 'content', title: 'Conteúdo', type: 'array', of: [{ type: 'block' }] }),
+        defineField({
+          name: 'images',
+          title: 'Imagens',
+          type: 'array',
+          of: [
+            {
+              type: 'image',
+              fields: [
+                defineField({ name: 'link', title: 'Link (URL)', type: 'url' }),
+              ],
+            },
+          ],
+        }),
+      ],
+    },
+    {
+  type: 'object',
+  name: 'wideImageBlock',
+  title: 'Bloco de Imagem de Destaque',
+  fields: [
+    defineField({ name: 'heading', title: 'Título', type: 'string' }),
+    defineField({ name: 'content', title: 'Conteúdo', type: 'array', of: [{ type: 'block' }] }),
+    defineField({
+      name: 'images',
+      title: 'Imagens',
       type: 'array',
       of: [
-        {
-          type: 'object',
-          name: 'textImageBlock',
-          title: 'Bloco de Texto e Imagem',
+        { type: 'image',
           fields: [
-            defineField({ name: 'heading', title: 'Título', type: 'string' }),
-            defineField({ name: 'content', title: 'Conteúdo', type: 'array', of: [{ type: 'block' }] }),
-            defineField({ name: 'image', title: 'Imagem', type: 'image' }),
+            defineField({ name: 'link', title: 'Link: (URL)', type: 'url'}),
           ],
-        },
-      ],
+         }],
     }),
+  ],
+},
+  ],
+}),
+
     defineField({
       name: 'featuredPosts',
       title: 'Carrossel de Posts',

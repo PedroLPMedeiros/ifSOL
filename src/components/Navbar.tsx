@@ -19,6 +19,7 @@ export function Navbar() {
             </span>
         </div>
 
+
         
         <nav className="hidden md:flex items-center gap-4 text-gray-800">
           <a href="/" className="hover:text-gray-950 hover:font-semibold transition-all">Início</a>
