@@ -38,7 +38,7 @@ function SingleImageBlock({ data }: SingleImageBlockProps) {
 
   return (
     <div className="w-full flex flex-col items-center py-16 px-8">
-      <h2 className="text-4xl md:text-5xl font-bold text-center mb-9 text-green-800">
+      <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 text-green-800">
         {data.heading}
       </h2>
       <div className="text-lg text-gray-700 max-w-3xl">
@@ -61,7 +61,7 @@ function SingleImageBlock({ data }: SingleImageBlockProps) {
 function MultiImageBlock({ data }: MultiImageBlockProps) {
   return (
     <div className="w-full flex flex-col items-center py-16 px-8">
-      <h2 className="text-4xl md:text-5xl font-bold text-center mb-9 text-green-800">
+      <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 text-green-800">
         {data.heading}
       </h2>
       <div className="text-lg text-gray-700 max-w-3xl mb-3">
@@ -71,24 +71,31 @@ function MultiImageBlock({ data }: MultiImageBlockProps) {
         {data.images.map((img, index) => {
           const imageUrl = urlFor(img).url();
           const link = img.link;
+          
           return (
-            <div key={index} className="relative aspect-square rounded-lg overflow-hidden shadow-accent hover:scale-105 transition-transform duration-300 ">
-              {link ? (
-                <Link href={link} passHref target='_blank' rel='nooper noreferrer'>
+            <div key={index} className="relative aspect-square rounded-lg overflow-hidden shadow-accent hover:scale-105 transition-transform duration-300">
+              {imageUrl ? (
+                link ? (
+                  <Link href={link} passHref target='_blank' rel='nooper noreferrer'>
+                    <Image
+                      src={imageUrl}
+                      alt={`Imagem ${index + 1}`}
+                      fill
+                      className="object-cover"
+                    />
+                  </Link>
+                ) : (
                   <Image
                     src={imageUrl}
                     alt={`Imagem ${index + 1}`}
                     fill
                     className="object-cover"
                   />
-                </Link>
+                )
               ) : (
-                <Image
-                  src={imageUrl}
-                  alt={`Imagem ${index + 1}`}
-                  fill
-                  className="object-cover"
-                />
+                <div className="w-full h-full bg-gray-300 flex items-center justify-center">
+                  <span className="text-gray-500 text-sm">Imagem não encontrada</span>
+                </div>
               )}
             </div>
           );
@@ -100,63 +107,44 @@ function MultiImageBlock({ data }: MultiImageBlockProps) {
 
 function WideImageBlock({ data }: WideImageBlockProps) {
     if (!data || !data.images) {
-        return null; 
+      return null; 
     }
     
     return (
-        <div className="w-full flex flex-col items-center py-16 px-8">
-            <h2 className="text-4xl md:text-5xl font-bold text-center mb-6 text-green-800">
-                {data.heading}
-            </h2>
-            <div className="text-lg text-gray-700 max-w-3xl">
-                <PortableText value={data.content} />
-            </div>
-
-            <div className="mt-8 w-full max-w-3xl mx-auto flex flex-col gap-4"> 
-                {data.images.map((img, index) => {
-                    const imageUrl = img ? urlFor(img).url() : null;
-                    const link = img.link;
-
-                    return (
-                        <div key={index} 
-                        className="relative min-h-40 rounded-lg overflow-hidden shadow-accent">
-                            {link ? (
-                                <Link href={link} passHref target="_blank" rel="noopener noreferrer">
-                                    {imageUrl ? (
-                                        <Image
-                                            src={imageUrl}
-                                            alt={data.heading || `Section Image ${index + 1}`}
-                                            fill
-                                            className="object-contain"
-                                        />
-                                    ) : (
-                                        <div className="w-full h-full bg-gray-300 flex items-center justify-center">
-                                            <span className="text-gray-500 text-sm">Imagem não encontrada</span>
-                                        </div>
-                                    )}
-                                </Link>
-                            ) : (
-                            
-                                imageUrl ? (
-                                    <Image
-                                        src={imageUrl}
-                                        alt={data.heading || `Section Image ${index + 1}`}
-                                        fill
-                                        className="object-contain"
-                                    />
-                                ) : (
-                                    <div className="w-full h-full bg-gray-300 flex items-center justify-center">
-                                        <span className="text-gray-500 text-sm">Imagem não encontrada</span>
-                                    </div>
-                                )
-                            )}
-                        </div>
-                    );
-                })}
-            </div>
+      <div className="w-full flex flex-col items-center py-16 px-8">
+        <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 text-green-800">
+          {data.heading}
+        </h2>
+        <div className="text-lg text-gray-700 max-w-3xl">
+          <PortableText value={data.content} />
         </div>
+  
+        <div className="mt-8 w-full max-w-3xl mx-auto flex flex-col gap-4"> 
+          {data.images.map((img, index) => {
+            const imageUrl = img ? urlFor(img).url() : null;
+            
+            return (
+              <div key={index} 
+              className="relative min-h-40 rounded-lg overflow-hidden shadow-accent">
+                {imageUrl ? (
+                    <Image
+                      src={imageUrl}
+                      alt={data.heading || `Section Image ${index + 1}`}
+                      fill
+                      className="object-cover"
+                    />
+                ) : (
+                    <div className="w-full h-full bg-gray-300 flex items-center justify-center">
+                        <span className="text-gray-500 text-sm">Imagem não encontrada</span>
+                    </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
     );
-}
+  }
 
 type AboutSectionProps = {
   data: any[];
