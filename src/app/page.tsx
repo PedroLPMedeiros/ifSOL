@@ -1,13 +1,14 @@
 
 import { Navbar } from "@/components/Navbar";
 import { HeroSection } from "@/components/HeroSection";
-import { PostCarousel } from "@/components/PostCarousel"; // Importe o novo componente
+import { PostCarousel } from "@/components/PostCarousel"; 
 import { client } from "@/lib/sanity.client";
 import groq from "groq";
 import { AboutSection } from "@/components/AboutSections";
 import { ActivitiesCarousel } from "@/components/ActivityCarousel";
 import { InstagramCarousel } from "@/components/InstagramCarousel";
-import { PortableText } from "next-sanity";
+import { Footer } from "@/components/Footer";
+import { BackToTopButton } from "@/components/BackToTopButton";
 
 const homepageQuery = groq`*[_type == "homepage"][0]{
   heroSection,
@@ -43,13 +44,15 @@ export default async function Home() {
   ]);
 
   return (
-    <main>
+    <main> 
       <Navbar />
       <HeroSection data={homepageData?.heroSection} />
       <PostCarousel posts={postsData} /> 
       <AboutSection data={homepageData?.aboutSections}/>
       <ActivitiesCarousel activities={homepageData?.activities}/>
       <InstagramCarousel posts={dummyInstagramPosts}/>
+      <Footer/>
+      <BackToTopButton/>
     </main>
   );
 }

@@ -45,12 +45,13 @@ function SingleImageBlock({ data }: SingleImageBlockProps) {
         <PortableText value={data.content} />
       </div>
       {imageUrl && (
-        <div className="relative mt-8 w-full h-[25vh] md:h-[50vh] md:max-w-4xl md:mx-auto">
+        <div className="relative mt-8 w-full h-[25vh] md:h-[50vh] md:max-w-3xl md:mx-auto">
           <Image
             src={imageUrl}
             alt={data.heading || "Section Image"}
             fill
             className="object-contain rounded-lg shadow-accent"
+            sizes='(max-width: 769px) 100vw, 75vw'
           />
         </div>
       )}
@@ -81,7 +82,8 @@ function MultiImageBlock({ data }: MultiImageBlockProps) {
                       src={imageUrl}
                       alt={`Imagem ${index + 1}`}
                       fill
-                      className="object-cover"
+                      className="object-contain"
+                      sizes='(max-width: 768px) 50vw, 25vw'
                     />
                   </Link>
                 ) : (
@@ -90,6 +92,7 @@ function MultiImageBlock({ data }: MultiImageBlockProps) {
                     alt={`Imagem ${index + 1}`}
                     fill
                     className="object-cover"
+                    sizes='(max-width: 768px) 50vw, 25vw'
                   />
                 )
               ) : (
@@ -131,7 +134,7 @@ function WideImageBlock({ data }: WideImageBlockProps) {
                       src={imageUrl}
                       alt={data.heading || `Section Image ${index + 1}`}
                       fill
-                      className="object-cover"
+                      className="object-contain"
                     />
                 ) : (
                     <div className="w-full h-full bg-gray-300 flex items-center justify-center">

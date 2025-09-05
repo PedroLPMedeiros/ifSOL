@@ -18,7 +18,7 @@ export function ActivityCard({ activity }: ActivityCardProps) {
   const iconUrl = activity.icon ? urlFor(activity.icon).url() : null;
 
   return (
-    <div className="flex flex-col items-center p-6 border-2 border-green-500 rounded-lg text-center shadow-lg h-full">
+    <div className="flex flex-col items-center p-6 border-2 bg-white border-green-500 rounded-lg text-center shadow-lg h-full">
       {iconUrl && (
         <Image
           src={iconUrl}
