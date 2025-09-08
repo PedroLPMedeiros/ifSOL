@@ -8,7 +8,7 @@ interface ActivityCardProps {
   activity: {
     _id: string;
     title: string;
-    description: any[];
+    description: any[]; 
     icon: any;
     extraText: string;
   };
@@ -18,7 +18,7 @@ export function ActivityCard({ activity }: ActivityCardProps) {
   const iconUrl = activity.icon ? urlFor(activity.icon).url() : null;
 
   return (
-    <div className="flex flex-col items-center p-6 border-2 bg-white border-green-500 rounded-lg text-center shadow-lg h-full">
+    <div className="flex flex-col items-center p-6 border-2 border-green-500 rounded-lg text-center shadow-lg h-full">
       {iconUrl && (
         <Image
           src={iconUrl}
@@ -29,9 +29,11 @@ export function ActivityCard({ activity }: ActivityCardProps) {
         />
       )}
       <h3 className="text-xl font-bold mb-2 text-green-800">{activity.title}</h3>
-      <p className="text-sm text-gray-700 mb-4">{activity.description}</p>
+      <div className="text-sm text-gray-700 mb-4">
+        <PortableText value={activity.description} />
+      </div>
       {activity.extraText && (
-        <p className="text-xs font-bold text-gray-700 mt-auto">{activity.extraText}</p>
+        <p className="text-xs font-bold mt-auto">{activity.extraText}</p>
       )}
     </div>
   );

@@ -11,6 +11,11 @@ export default defineType({
       type: 'string',
     }),
     defineField({
+      name: 'description',
+      title: 'Breve descrição',
+      type: 'text',
+    }),
+    defineField({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
@@ -18,6 +23,12 @@ export default defineType({
         source: 'title',
         maxLength: 96,
       },
+    }),
+    defineField({
+      name: 'author',
+      title: 'Autor',
+      type: 'reference',
+      to: {type: 'author'},
     }),
     defineField({
       name: 'content',

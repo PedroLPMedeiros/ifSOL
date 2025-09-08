@@ -1,7 +1,6 @@
 
 import React from "react";
 import { urlFor } from "@/lib/urlFor"; 
-import Image from "next/image";
 
 type HeroSectionProps = {
   data: {
@@ -27,14 +26,6 @@ export function HeroSection({ data }: HeroSectionProps) {
         {data.subheading}
       </p>
 
-      {imageUrl && (
-        <Image
-          src={imageUrl}
-          alt={data.heading || "Hero Image"}
-          fill
-          className="object-cover -z-10"
-        />
-      )}
     </section>
   );
 }

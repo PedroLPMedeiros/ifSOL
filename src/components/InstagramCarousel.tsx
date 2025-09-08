@@ -1,52 +1,106 @@
 "use client";
 
-import React, {useRef, useCallback} from "react";
-import useEmblaCarousel from "embla-carousel-react";
-import { InstagramPostCard } from "./InstagramPostCard";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import Slider from 'react-slick'; // Importe o Slider
+import { ArrowLeft, ArrowRight } from 'lucide-react';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-interface InstagramPostCardProps {
-    posts: any[];
+
+interface InstagramPost {
+  id: string;
+  media_url: string;
+  permalink: string;
+  caption: string;
 }
 
-export function InstagramCarousel({posts}: InstagramPostCardProps){
-    const [emblaRef, emblaApi] = useEmblaCarousel({
-        loop: true,
-        align: 'start',
-    });
+interface InstagramCarouselProps {
+  posts: InstagramPost[];
+}
 
-    const scrollPrev = useCallback(() => {
-    if (emblaApi) emblaApi.scrollPrev();
-  }, [emblaApi]);
+const NextArrow = (props: any) => {
+  const { onClick } = props;
+  return (
+    <button
+      onClick={onClick}
+      className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md z-20 hidden md:block"
+      aria-label="Próximo"
+    >
+      <ArrowRight className="h-6 w-6 text-gray-700" />
+    </button>
+  );
+};
 
-  const scrollNext = useCallback(() => {
-    if (emblaApi) emblaApi.scrollNext();
-  }, [emblaApi]);
+const PrevArrow = (props: any) => {
+  const { onClick } = props;
+  return (
+    <button
+      onClick={onClick}
+      className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md z-20 hidden md:block"
+      aria-label="Anterior"
+    >
+      <ArrowLeft className="h-6 w-6 text-gray-700" />
+    </button>
+  );
+};
 
+export function InstagramCarousel({ posts }: InstagramCarouselProps) {
   if (!posts || posts.length === 0) {
     return null;
   }
 
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4, // 4 posts no desktop
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2, // 2 posts no tablet
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1, // 1 post no mobile
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
   return (
-    <section className="relative w-full py-12">
+    <section className="relative w-full py-12 px-8">
       <div className="container relative mx-auto h-auto">
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 text-green-800">Nosso Instagram</h2>
-        <div className="embla" ref={emblaRef}>
-          <div className="embla__container flex">
+        <div className="relative">
+          <Slider {...settings}>
             {posts.map((post) => (
-              <InstagramPostCard key={post.id} post={post} />
+              <div key={post.id} className="px-3">
+                <Link href={post.permalink} passHref target="_blank" rel="noopener noreferrer">
+                  <div className="relative aspect-square rounded-lg overflow-hidden shadow-md group">
+                    <Image
+                      src={post.media_url}
+                      alt={post.caption || `Post do Instagram ${post.id}`}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                </Link>
+              </div>
             ))}
-          </div>
+          </Slider>
         </div>
-        <button onClick={scrollPrev} 
-        className="absolute top-1/2 left-0 transform -translate-y-1/2 z-10 p-2 bg-white rounded-full shadow-md hover:bg-gray-200 transition-colors">
-          <ArrowLeft className="h-6 w-6 text-gray-800" />
-        </button>
-        <button 
-        onClick={scrollNext} 
-        className="absolute top-1/2 right-0 transform -translate-y-1/2 z-10 p-2 bg-white rounded-full shadow-md hover:bg-gray-200 transition-colors">
-          <ArrowRight className="h-6 w-6 text-gray-800" />
-        </button>
       </div>
     </section>
   );

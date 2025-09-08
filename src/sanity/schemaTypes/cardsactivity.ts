@@ -1,3 +1,4 @@
+
 import { defineField, defineType } from 'sanity';
 
 export default defineType({
@@ -11,9 +12,10 @@ export default defineType({
       type: 'string',
     }),
     defineField({
-      name: 'description',
+      name: 'description', 
       title: 'Descrição',
-      type: 'text',
+      type: 'array',
+      of: [{ type: 'block' }],
     }),
     defineField({
       name: 'icon',
