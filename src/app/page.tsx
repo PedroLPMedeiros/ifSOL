@@ -44,7 +44,7 @@ export default async function Home() {
   ]);
 
   return (
-    <main> 
+    <main > 
       <Navbar />
       <HeroSection data={homepageData?.heroSection} />
       <PostCarousel posts={postsData} /> 

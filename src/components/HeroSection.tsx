@@ -18,7 +18,7 @@ export function HeroSection({ data }: HeroSectionProps) {
   const imageUrl = data.image ? urlFor(data.image).url() : null;
 
   return (
-    <section className="relative flex flex-col items-center justify-center text-center py-20 px-8">
+    <section className="relative flex flex-col items-center justify-center text-center py-18 px-8">
       <h1 className="text-5xl md:text-6xl font-bold mb-9 text-green-700">
         {data.heading}
       </h1>

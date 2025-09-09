@@ -89,7 +89,7 @@ export function PostCarousel({ posts }: PostCarouselProps) {
   };
 
   return (
-    <section className="relative w-full py-12 px-8">
+    <section className="relative w-full py-5 px-8 mb-5">
       <div className="container relative mx-auto h-auto">
         <div className="relative">
           <Slider {...settings}>
