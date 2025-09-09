@@ -11,6 +11,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { FilterDropdown } from "@/components/FilterDropdown";
 import { BackToTopButton } from "@/components/BackToTopButton";
 import { Pagination } from "@/components/Pagination";
+import { MobileFilters } from "@/components/MobileFilters";
 
 interface Edital {
   _id: string;
@@ -127,6 +128,19 @@ export default function EditaisPage() {
         <h1 className="text-4xl md:text-5xl font-bold mb-8 text-green-800 text-center">
           Editais
         </h1>
+
+         <div className="md:hidden w-full flex justify-center mb-6">
+          <MobileFilters 
+            editalTypes={editalTypes} 
+            campi={campi} 
+            selectedTypes={selectedTypes}
+            selectedCampi={selectedCampi}
+            onTypeChange={handleTypeChange}
+            onCampusChange={handleCampusChange}
+            onSearch={handleSearch}
+          />
+        </div>
+
         <div className="flex flex-col md:flex-row gap-8">
           <div className="w-full md:w-3/4 flex flex-col gap-6">
             {editais.length > 0 ? (

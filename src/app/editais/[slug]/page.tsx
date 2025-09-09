@@ -67,7 +67,7 @@ export default async function EditalPage({ params }: { params: { slug: string } 
             {edital.files && edital.files.map((file, index) => (
               <Link key={index} href={file.url || '#'} passHref target="_blank" rel="noopener noreferrer">
                 <div className="inline-flex rounded-xl border-2 border-green-500 overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
-                  <div className="px-6 py-2 bg-green-400 text-gray-600 font-semibold">
+                  <div className="px-6 py-2 bg-green-400 text-gray-800 font-semibold">
                     PDF
                   </div>
                   <div className="px-6 py-2 bg-white text-gray-700 font-semibold">
