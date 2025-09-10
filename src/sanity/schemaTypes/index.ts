@@ -6,6 +6,8 @@ import author from './author'
 import edital from './edital'
 import editalType from './editalType'
 import campus from './campus'
+import nucleoAcademico from './nucleoAcademico'
+import member from './member'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -16,5 +18,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     edital,
     editalType,
     campus,
+    nucleoAcademico,
+    member,
   ],
 }

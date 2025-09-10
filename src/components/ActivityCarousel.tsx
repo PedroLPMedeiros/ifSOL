@@ -1,7 +1,6 @@
 "use client";
 
 import React from 'react';
-import Image from 'next/image';
 import Slider from 'react-slick';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { ActivityCard } from './ActivityCard';
@@ -12,7 +11,7 @@ import "slick-carousel/slick/slick-theme.css";
 interface Activity {
     _id: string;
     title: string;
-    description: string;
+    description: any;
     icon: any;
     extraText: string;
   }

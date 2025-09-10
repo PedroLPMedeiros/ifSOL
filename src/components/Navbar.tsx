@@ -39,7 +39,7 @@ export function Navbar() {
             </SheetTrigger>
             <SheetContent side="right" className="w-full flex flex-col items-center justify-center bg-green-400 text-gray-900">
               <nav className="flex flex-col items-center gap-6 text-xl">
-                <a href="/" className="font-bold">Início</a>
+                <a href="/">Início</a>
                 <a href="/noticias">Notícias</a>
                 <a href="/editais">Editais</a>
                 <a href="/galeria">Galeria</a>
