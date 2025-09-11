@@ -16,20 +16,26 @@ export function PostCard({ post }: PostCardProps) {
   const imageUrl = post.mainImage ? urlFor(post.mainImage).url() : null;
 
   return (
-    <div className="flex-shrink-0 flex-grow-0 basis-full md:basis-1/2 lg:basis-1/2 p-2">
-      <Link href={`/posts/${post.slug.current}`} passHref>
-        <div className="w-full h-full relative overflow-hidden rounded-lg shadow-lg">
+    <div className="h-full">
+      <Link href={`/noticias/${post.slug.current}`} passHref>
+        <div className="bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-xl transition-all duration-300 h-full flex flex-col">
           {imageUrl && (
-            <Image
-              src={imageUrl}
-              alt={post.title}
-              width={500}
-              height={300}
-              className="object-cover w-full h-full"
-            />
+            <div className="relative w-full h-[240px] flex-shrink-0">
+              <Image
+                src={imageUrl}
+                alt={post.title}
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+            </div>
           )}
-          <div className="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/80 to-transparent text-white">
-            <h3 className="text-lg font-bold">{post.title}</h3>
+          <div className="p-4 sm:p-5 flex-grow flex flex-col justify-between">
+            <h3 className="text-lg font-bold text-gray-800 group-hover:text-green-700 transition-colors leading-tight line-clamp-3">
+              {post.title}
+            </h3>
+            <div className="mt-3 text-sm text-green-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+              Leia mais →
+            </div>
           </div>
         </div>
       </Link>

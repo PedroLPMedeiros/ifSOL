@@ -1,57 +1,71 @@
 "use client";
 
-import React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import Slider from 'react-slick';
-import { urlFor } from '@/lib/urlFor';
+import React, { useCallback, useEffect } from 'react';
+import useEmblaCarousel from 'embla-carousel-react';
+import Autoplay from 'embla-carousel-autoplay';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import { PostCard } from './PostCard';
 
-
-interface Post{
+interface Post {
   _id: string;
   title: string;
-  slug: {current: string};
+  slug: { current: string };
   mainImage: any;
 }
 
-interface PostCarouselProps{
+interface PostCarouselProps {
   posts: Post[];
 }
 
-
-const NextArrow = (props: any) => {
-  const { onClick } = props;
-  return (
-    <button
-      onClick={onClick}
-      className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md z-20 hidden md:block"
-      aria-label="Próximo"
-    >
-      <ArrowRight className="h-6 w-6 text-gray-700" />
-    </button>
-  );
-};
-
-const PrevArrow = (props: any) => {
-  const { onClick } = props;
-  return (
-    <button
-      onClick={onClick}
-      className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md z-20 hidden md:block"
-      aria-label="Anterior"
-    >
-      <ArrowLeft className="h-6 w-6 text-gray-700" />
-    </button>
-  );
-};
-
 export function PostCarousel({ posts }: PostCarouselProps) {
+  
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    {
+      loop: true,
+      align: 'start',
+      slidesToScroll: 1,
+      breakpoints: {
+        '(min-width: 640px)': { slidesToScroll: 1 },
+        '(min-width: 1024px)': { slidesToScroll: 1 }
+      }
+    },
+    [Autoplay({ delay: 5000, stopOnInteraction: true })]
+  );
+
+  
+  const [prevBtnDisabled, setPrevBtnDisabled] = React.useState(true);
+  const [nextBtnDisabled, setNextBtnDisabled] = React.useState(true);
+
+  
+  const scrollPrev = useCallback(
+    () => emblaApi && emblaApi.scrollPrev(),
+    [emblaApi]
+  );
+
+  const scrollNext = useCallback(
+    () => emblaApi && emblaApi.scrollNext(),
+    [emblaApi]
+  );
+
+  
+  const onSelect = useCallback((emblaApi: any) => {
+    setPrevBtnDisabled(!emblaApi.canScrollPrev());
+    setNextBtnDisabled(!emblaApi.canScrollNext());
+  }, []);
+
+  
+  useEffect(() => {
+    if (!emblaApi) return;
+
+    onSelect(emblaApi);
+    emblaApi.on('reInit', onSelect);
+    emblaApi.on('select', onSelect);
+  }, [emblaApi, onSelect]);
+
+  
   if (!posts || posts.length === 0) {
     return (
-      <section className="w-full py-16 flex justify-center items-center bg-gray-200">
+      <section className="w-full py-16 flex justify-center items-center bg-gray-50">
         <h2 className="text-xl font-semibold text-gray-700">
           Não há posts recentes para exibir.
         </h2>
@@ -59,64 +73,57 @@ export function PostCarousel({ posts }: PostCarouselProps) {
     );
   }
 
-  
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3, 
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 5000,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2, 
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1, 
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
-
   return (
     <section className="relative w-full py-5 px-8 mb-5">
-      <div className="container relative mx-auto h-auto">
+      <div className="container relative mx-auto max-w-7xl">
         <div className="relative">
-          <Slider {...settings}>
-            {posts.map((post) => (
-              <div key={post._id} className="px-3">
-                <Link href={`/noticias/${post.slug.current}`} passHref>
-                  <div className="bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-xl transition-shadow duration-300">
-                    {post.mainImage && (
-                      <div className="relative w-full h-[280px]">
-                        <Image
-                          src={urlFor(post.mainImage).url()}
-                          alt={post.title}
-                          fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-300"
-                        />
-                      </div>
-                    )}
-                    <div className="p-4">
-                      <h3 className="text-lg font-bold mb-2 text-gray-800 group-hover:text-green-700 transition-colors">
-                        {post.title}
-                      </h3>
-                    </div>
-                  </div>
-                </Link>
-              </div>
-            ))}
-          </Slider>
+          
+          <div className="overflow-hidden rounded-xl" ref={emblaRef}>
+            <div className="flex">
+              {posts.map((post) => (
+                <div
+                  key={post._id}
+                  className="flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_33.333%] min-w-0 pl-4 sm:pl-6 lg:pl-8 pr-4 sm:pr-6 lg:pr-8"
+                >
+                  <PostCard post={post} />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          
+          <button
+            className={`absolute -left-6 top-1/2 transform -translate-y-1/2 bg-white p-3 rounded-full shadow-lg z-10 transition-all duration-200 hidden md:block ${
+              prevBtnDisabled 
+                ? 'opacity-50 cursor-not-allowed' 
+                : 'hover:bg-gray-50 hover:shadow-xl'
+            }`}
+            onClick={scrollPrev}
+            disabled={prevBtnDisabled}
+            aria-label="Anterior"
+          >
+            <ArrowLeft className="h-5 w-5 text-gray-700" />
+          </button>
+
+          <button
+            className={`absolute -right-6 top-1/2 transform -translate-y-1/2 bg-white p-3 rounded-full shadow-lg z-10 transition-all duration-200 hidden md:block ${
+              nextBtnDisabled 
+                ? 'opacity-50 cursor-not-allowed' 
+                : 'hover:bg-gray-50 hover:shadow-xl'
+            }`}
+            onClick={scrollNext}
+            disabled={nextBtnDisabled}
+            aria-label="Próximo"
+          >
+            <ArrowRight className="h-5 w-5 text-gray-700" />
+          </button>
+
+
+          <div className="sm:hidden mt-4 text-center">
+            <p className="text-sm text-gray-500">
+              Deslize para ver mais posts →
+            </p>
+          </div>
         </div>
       </div>
     </section>
