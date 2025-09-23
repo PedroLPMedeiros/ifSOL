@@ -75,7 +75,7 @@ export function ActivitiesCarousel({ activities }: ActivitiesCarouselProps) {
   }
 
   return (
-    <section className="relative w-full py-8 sm:py-12 px-4 sm:px-8 bg-gray-50">
+    <section className="relative w-full py-8 sm:py-12 px-4 sm:px-8">
       <div className="container relative mx-auto max-w-7xl">
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-8 sm:mb-12 text-green-800">
           Atividades da ifSOL

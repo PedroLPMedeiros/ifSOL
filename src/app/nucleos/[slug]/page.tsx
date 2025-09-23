@@ -60,7 +60,7 @@ export default async function NucleoPage({ params }: { params: { slug: string } 
           </div>
         </article>
 
-        {/* Seção de Membros */}
+        
         {nucleo.members && nucleo.members.length > 0 && (
           <section className="mt-16 border-t pt-8">
             <h2 className="text-3xl font-bold text-center mb-8 text-green-800">Membros</h2>
