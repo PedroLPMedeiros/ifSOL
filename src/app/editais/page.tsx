@@ -153,7 +153,7 @@ export default function EditaisPage() {
                     <span>Campus: {edital.campus?.name || 'Não especificado'}</span>
                   </div>
                   <Link href={`/editais/${edital.slug}`} passHref>
-                    <button className="mt-auto px-6 py-2 bg-green-500 text-white rounded-full font-semibold hover:bg-green-600 transition-colors">
+                    <button className="mt-auto px-6 py-2 bg-green-500 text-white rounded-full font-semibold hover:bg-green-600 transition-colors cursor-pointer">
                       Ver edital
                     </button>
                   </Link>
@@ -196,7 +196,7 @@ export default function EditaisPage() {
               </FilterDropdown>
               <button 
                 onClick={handleSearch}
-                className="w-full mt-4 px-6 py-2 bg-green-500 text-white rounded-full font-semibold hover:bg-green-600 transition-colors"
+                className="w-full mt-4 px-6 py-2 bg-green-500 text-white rounded-full font-semibold hover:bg-green-600 transition-colors cursor-pointer"
               >
                 Buscar
               </button>

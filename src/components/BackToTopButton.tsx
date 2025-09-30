@@ -35,7 +35,7 @@ export function BackToTopButton() {
                 <Button
                     onClick={scrollToTop}
                     size="icon"
-                    className="fixed bottom-4 right-4 z-50 rounded-full h-12 w-12 bg-green-400 hover:bg-green-600"
+                    className="fixed bottom-4 right-4 z-50 rounded-full h-12 w-12 bg-green-400 hover:bg-green-600 cursor-pointer"
                 >
                     <ArrowUp className="h-6 w-6"/>
                     <span className="sr-only">Voltar ao topo</span>

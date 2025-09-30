@@ -14,8 +14,8 @@ export function Navbar() {
             alt= "Logo da ifSOL" 
             className="h-20 w-auto object-contain max-w-full"/> 
           </a>
-          <span className="font-light text-black hidden md:block">
-            Instituto Federal de Educação, Ciência e Tecnologia do Rio Grande do Norte
+          <span className="font-light text-black hidden md:block max-w-sm">
+            Incubadora Tecnológica para o Fortalecimento dos Empreendimentos Econômicos Solidários do IFRN
             </span>
         </div>
 
@@ -45,8 +45,8 @@ export function Navbar() {
                 <a href="/galeria">Galeria</a>
                 <a href="/nucleos">Núcleos</a>
                 <hr className="w-70 border-gray-700 my-4"/>
-                <span className="font-light w-full text-center">
-                    Instituto federal de Educação, Ciências e tecnologia do Rio Grande do Norte
+                <span className="font-light w-full text-center max-w-xs mx-auto">
+                    Incubadora Tecnológica para o Fortalecimento dos Empreendimentos Econômicos Solidários do IFRN
                 </span>
               </nav>
             </SheetContent>

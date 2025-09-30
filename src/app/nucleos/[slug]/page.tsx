@@ -83,7 +83,7 @@ export default async function NucleoPage({ params }: { params: { slug: string } 
         {nucleo.instagramUrl && (
             
                 <Link href={nucleo.instagramUrl} passHref target="_blank">
-                    <button className="px-6 py-3 bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045] text-white rounded-full font-semibold hover:bg-green-600 transition-colors flex items-center justify-center gap-2 mx-auto">
+                    <button className="px-6 py-3 bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045] text-white rounded-full font-semibold hover:bg-green-600 transition-colors flex items-center justify-center gap-2 mx-auto cursor-pointer">
                         Visitar Instagram 
                         <Instagram className="h-5 w-5"/>
                     </button>
