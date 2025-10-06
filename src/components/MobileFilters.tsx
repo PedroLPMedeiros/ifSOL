@@ -30,6 +30,7 @@ export function MobileFilters({ editalTypes, campi, selectedTypes, selectedCampi
         <SheetHeader>
           <SheetTitle className="text-2xl font-bold">Filtros</SheetTitle>
         </SheetHeader>
+        
         <div className="flex flex-col gap-4">
           <FilterDropdown title="Tipos de edital" options={editalTypes}>
             {editalTypes.map((type: any) => (

@@ -7,6 +7,7 @@ import { ArrowLeft, ArrowRight } from 'lucide-react';
 interface PaginationProps {
   currentPage: number;
   totalPages: number;
+  basePath: string;
 }
 
 export function Pagination({ currentPage, totalPages }: PaginationProps) {
@@ -16,9 +17,8 @@ export function Pagination({ currentPage, totalPages }: PaginationProps) {
   const showNext = currentPage < totalPages;
 
   const baseButtonClasses = "h-10 w-10 border rounded-full flex items-center justify-center transition-colors";
-
-  const activeArrowClasses = "text-green-700"; // Cor para setas ativas
-  const disabledArrowClasses = "text-gray-400"; // Cor para setas desabilitadas
+  const activeArrowClasses = "text-green-700"; 
+  const disabledArrowClasses = "text-gray-400"; 
 
   const prevButtonClasses = `${baseButtonClasses} ${
     showPrev ? 'hover:bg-green-100 border-green-500' : 'cursor-not-allowed border-gray-300'

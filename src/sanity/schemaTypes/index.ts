@@ -8,6 +8,7 @@ import editalType from './editalType'
 import campus from './campus'
 import nucleoAcademico from './nucleoAcademico'
 import member from './member'
+import galleryAlbum from './galleryAlbum'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -20,5 +21,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     campus,
     nucleoAcademico,
     member,
+    galleryAlbum
   ],
 }

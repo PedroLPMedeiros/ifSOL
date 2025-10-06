@@ -1,0 +1,77 @@
+import { Navbar } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
+import { BackToTopButton } from "@/components/BackToTopButton";
+import { client } from "@/lib/sanity.client";
+import groq from "groq";
+import Image from "next/image";
+import { notFound } from "next/navigation";
+
+export const revalidate = 0;
+
+interface AlbumImage {
+  url: string;
+  alt: string;
+}
+
+interface Album {
+  _id: string;
+  title: string;
+  year: number;
+  campusName: string;
+  images: AlbumImage[];
+}
+
+const albumQuery = groq`*[_type == "galleryAlbum" && slug.current == $slug][0]{
+  _id,
+  title,
+  year,
+  "campusName": campus->name,
+  images[]{
+    "url": asset->url,
+    alt
+  }
+}`;
+
+export default async function AlbumPage({ params }: { params: { slug: string } }) {
+  const album: Album = await client.fetch(albumQuery, { slug: params.slug });
+
+  if (!album || !album.images || album.images.length === 0) {
+    
+    notFound(); 
+  }
+
+  return (
+    <main className="min-h-screen flex flex-col">
+      <Navbar />
+      <div className="container mx-auto px-8 py-12 flex-grow">
+        
+        
+        <div className="text-center mb-12">
+            <h1 className="text-4xl md:text-5xl font-bold mb-2 text-green-800">
+                {album.title}
+            </h1>
+            <p className="text-lg text-gray-600">
+                {album.campusName} • {album.year} ({album.images.length} fotos)
+            </p>
+        </div>
+
+       
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-7xl mx-auto">
+          {album.images.map((image, index) => (
+            <div key={index} className="relative aspect-square rounded-lg overflow-hidden shadow-lg">
+              <Image
+                src={image.url}
+                alt={image.alt || `Foto ${index + 1}`}
+                fill
+                sizes="(max-width: 640px) 50vw, 25vw"
+                className="object-cover hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+      <Footer />
+      <BackToTopButton />
+    </main>
+  );
+}
