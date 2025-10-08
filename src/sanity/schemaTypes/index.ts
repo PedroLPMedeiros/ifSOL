@@ -9,6 +9,8 @@ import campus from './campus'
 import nucleoAcademico from './nucleoAcademico'
 import member from './member'
 import galleryAlbum from './galleryAlbum'
+import sobreNos from './sobreNos'
+import { multiImageBlock, singleImageBlock, wideImageBlock } from './contentBlocks'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -21,6 +23,10 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     campus,
     nucleoAcademico,
     member,
-    galleryAlbum
+    galleryAlbum,
+    sobreNos,
+    singleImageBlock,
+    multiImageBlock,
+    wideImageBlock
   ],
 }

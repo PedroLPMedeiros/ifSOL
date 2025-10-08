@@ -14,22 +14,23 @@ export function Navbar() {
             alt= "Logo da ifSOL" 
             className="h-20 w-auto object-contain max-w-full"/> 
           </a>
-          <span className="font-light text-black hidden md:block max-w-sm">
+          <span className="font-light text-black hidden lg:block max-w-sm"> {/*Mudei de md para lg*/}
             Incubadora Tecnológica para o Fortalecimento dos Empreendimentos Econômicos Solidários do IFRN
             </span>
         </div>
 
 
         
-        <nav className="hidden md:flex items-center gap-4 text-gray-800">
+        <nav className="hidden lg:flex items-center gap-4 text-gray-800">{/*Mudei de md para lg*/}
           <a href="/" className="hover:text-gray-950 hover:font-semibold transition-all">Início</a>
+          <a href="/sobreNos" className="hover:text-gray-950 hover:font-semibold transition-all">Sobre Nós</a>
           <a href="/noticias" className="hover:text-gray-950 hover:font-semibold transition-all">Notícias</a>
           <a href="/editais" className="hover:text-gray-950 hover:font-semibold transition-all">Editais</a>
           <a href="/galeria" className="hover:text-gray-950 hover:font-semibold transition-all">Galeria</a>
           <a href="/nucleos" className="hover:text-gray-950 hover:font-semibold transition-all">Núcleos</a>
         </nav>
 
-        <div className="md:hidden h-full flex items-center">
+        <div className="lg:hidden h-full flex items-center"> {/*Mudei de md para lg*/}
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="lg">
@@ -40,6 +41,7 @@ export function Navbar() {
             <SheetContent side="right" className="w-full flex flex-col items-center justify-center bg-green-400 text-gray-900">
               <nav className="flex flex-col items-center gap-6 text-xl">
                 <a href="/">Início</a>
+                <a href="sobreNos">Sobre Nós</a>
                 <a href="/noticias">Notícias</a>
                 <a href="/editais">Editais</a>
                 <a href="/galeria">Galeria</a>

@@ -1,4 +1,4 @@
-// src/app/galeria/page.tsx
+
 'use client';
 
 import { Navbar } from "@/components/Navbar";
