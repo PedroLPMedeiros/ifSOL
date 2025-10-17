@@ -133,3 +133,6 @@ export function ActivitiesCarousel({ activities }: ActivitiesCarouselProps) {
     </section>
   );
 }
+
+
+
