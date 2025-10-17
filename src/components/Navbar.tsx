@@ -1,4 +1,4 @@
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 
@@ -39,6 +39,10 @@ export function Navbar() {
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-full flex flex-col items-center justify-center bg-green-400 text-gray-900">
+              
+              <SheetHeader>
+                <SheetTitle className="sr-only">Menu de Navegação</SheetTitle>
+              </SheetHeader>
               <nav className="flex flex-col items-center gap-6 text-xl">
                 <a href="/">Início</a>
                 <a href="sobreNos">Sobre Nós</a>
