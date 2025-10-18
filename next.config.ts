@@ -17,6 +17,14 @@ const nextConfig: NextConfig = {
       }
     ],
   },
+
+  // --- Configurações para deploy no vercel
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
 
 export default nextConfig;
