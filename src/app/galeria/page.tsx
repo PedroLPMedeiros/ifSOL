@@ -1,6 +1,6 @@
 'use client';
 
-export const dynamic = 'force-dynamic';
+// export const dynamic = 'force-dynamic'; //temporário
 
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
