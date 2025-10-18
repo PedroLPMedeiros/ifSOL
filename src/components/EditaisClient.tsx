@@ -225,15 +225,6 @@ return (
                 </div>
             )}
       </div>
-{totalItems > 0 && ( 
-    <div className="flex justify-center items-center mt-8">
-                    <Pagination
-                      currentPage={currentPage}
-                      totalPages={totalPages}
-                      basePath="/editais"
-                    />
-                </div>
-)}
  </>
 );
 }
