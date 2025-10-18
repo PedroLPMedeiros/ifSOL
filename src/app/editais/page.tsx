@@ -1,5 +1,5 @@
-
 "use client";
+export const dynamic = 'force-dynamic';
 
 import { client } from "@/lib/sanity.client";
 import groq from "groq";
