@@ -119,7 +119,7 @@ export default function GaleriaClient({ initialAlbums, initialTotalCount, initia
                 setSelectedYears(prev =>
                 prev.includes(value) ? prev.filter(id => id !== value) : [...prev, value]
         );
-    };
+    }
  }
 
 

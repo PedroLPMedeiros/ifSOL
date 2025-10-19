@@ -42,7 +42,7 @@ export function MobileFilters({ campi, yearOptions, selectedCampi, selectedYear,
                                 <input 
                                     type="checkbox" 
                                     className="form-checkbox text-green-500 rounded" 
-                                    checked={selectedCampi.includes(campus._id)}
+                                    checked={selectedCampi.includes(campus.name)}
                                     onChange={() => onCampusChange(campus.name)}
                                 />
                                 {campus.name}

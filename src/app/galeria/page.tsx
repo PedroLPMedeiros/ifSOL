@@ -273,14 +273,14 @@ const filtersQuery = groq`
 `;
 
 const countQuery = groq`
-  count(*[_type == "galleryAlbum" && 
-    (!defined($campusNames) || campus->name in $campusNames) && 
-    (!defined($years) || year in $years)
-  ])
+ count(*[_type == "galleryAlbum" && 
+ (!defined($campusNames) || campus->name in $campusNames) && 
+ (!defined($years) || year in $years)
+ ])
 `;
 
 const albumsQuery = groq`
-  *[_type == "galleryAlbum" && 
+ *[_type == "galleryAlbum" && 
     (!defined($campusNames) || campus->name in $campusNames) && 
     (!defined($years) || year in $years)
   ] | order(year desc, _createdAt desc) [$offset...$limit] {
