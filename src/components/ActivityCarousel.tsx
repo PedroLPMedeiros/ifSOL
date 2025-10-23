@@ -98,7 +98,7 @@ export function ActivitiesCarousel({ activities }: ActivitiesCarouselProps) {
 
           
           <button
-            className={`absolute -left-6 top-1/2 transform -translate-y-1/2 bg-white p-3 rounded-full shadow-lg z-10 transition-all duration-200 hidden sm:block ${
+            className={`absolute -left-6 top-1/2 transform -translate-y-1/2 bg-white p-3 rounded-full shadow-lg z-10 transition-all duration-200 hidden sm:block  ${
               prevBtnDisabled 
                 ? 'opacity-50 cursor-not-allowed' 
                 : 'hover:bg-gray-50 hover:shadow-xl'

@@ -34,7 +34,7 @@ export function Navbar() {
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="lg">
-                <Menu className="w-full" />
+                <Menu className="size-7" />
                 <span className="sr-only">Abrir menu</span>
               </Button>
             </SheetTrigger>

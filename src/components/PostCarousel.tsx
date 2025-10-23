@@ -93,7 +93,7 @@ export function PostCarousel({ posts }: PostCarouselProps) {
 
           
           <button
-            className={`absolute -left-6 top-1/2 transform -translate-y-1/2 bg-white p-3 rounded-full shadow-lg z-10 transition-all duration-200 hidden md:block ${
+            className={`absolute -left-6 top-1/2 transform -translate-y-1/2 bg-white p-3 rounded-full shadow-lg z-10 transition-all duration-200 hidden md:block cursor-pointer ${
               prevBtnDisabled 
                 ? 'opacity-50 cursor-not-allowed' 
                 : 'hover:bg-gray-50 hover:shadow-xl'
@@ -106,7 +106,7 @@ export function PostCarousel({ posts }: PostCarouselProps) {
           </button>
 
           <button
-            className={`absolute -right-6 top-1/2 transform -translate-y-1/2 bg-white p-3 rounded-full shadow-lg z-10 transition-all duration-200 hidden md:block ${
+            className={`absolute -right-6 top-1/2 transform -translate-y-1/2 bg-white p-3 rounded-full shadow-lg z-10 transition-all duration-200 hidden md:block cursor-pointer ${
               nextBtnDisabled 
                 ? 'opacity-50 cursor-not-allowed' 
                 : 'hover:bg-gray-50 hover:shadow-xl'
