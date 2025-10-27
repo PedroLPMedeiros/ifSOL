@@ -26,7 +26,7 @@ const postsQuery = groq`*[_type == "post"] | order(_createdAt desc) [($start)...
 }`;
 
 const countQuery = groq`count(*[_type == "post"])`;
-const postsPerPage = 12;
+const postsPerPage = 8;
 
 export default async function NoticiasPage({searchParams}: {searchParams: {page?: string} }) {
     const page = parseInt(searchParams.page || '1', 10);
