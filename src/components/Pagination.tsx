@@ -21,10 +21,10 @@ export function Pagination({ currentPage, totalPages }: PaginationProps) {
   const disabledArrowClasses = "text-gray-400"; 
 
   const prevButtonClasses = `${baseButtonClasses} ${
-    showPrev ? 'hover:bg-green-100 border-green-500' : 'cursor-not-allowed border-gray-300'
+    showPrev ? 'hover:bg-green-100 border-green-500 cursor-pointer' : 'cursor-not-allowed border-gray-300'
   }`;
   const nextButtonClasses = `${baseButtonClasses} ${
-    showNext ? 'hover:bg-green-100 border-green-500' : 'cursor-not-allowed border-gray-300'
+    showNext ? 'hover:bg-green-100 border-green-500 cursor-pointer' : 'cursor-not-allowed border-gray-300'
   }`;
 
   return (
