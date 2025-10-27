@@ -10,7 +10,7 @@ interface PaginationProps {
   basePath: string;
 }
 
-export function Pagination({ currentPage, totalPages }: PaginationProps) {
+export function Pagination({ currentPage, totalPages, basePath }: PaginationProps) {
   if (totalPages <= 0) return null;
 
   const showPrev = currentPage > 1;
@@ -30,7 +30,7 @@ export function Pagination({ currentPage, totalPages }: PaginationProps) {
   return (
     <div className="flex flex-col md:flex-row justify-center items-center gap-4 mt-8">
       <div className="flex items-center gap-2">
-        <Link href={showPrev ? `/noticias?page=${currentPage - 1}` : '#'} passHref>
+        <Link href={showPrev ? `${basePath}?page=${currentPage - 1}` : '#'} passHref>
           <button className={prevButtonClasses} disabled={!showPrev}>
             <ArrowLeft className={`h-5 w-5 ${showPrev ? activeArrowClasses : disabledArrowClasses}`} />
           </button>
@@ -40,7 +40,7 @@ export function Pagination({ currentPage, totalPages }: PaginationProps) {
           Página {currentPage} de {totalPages}
         </span>
 
-        <Link href={showNext ? `/noticias?page=${currentPage + 1}` : '#'} passHref>
+        <Link href={showNext ? `${basePath}?page=${currentPage + 1}` : '#'} passHref>
           <button className={nextButtonClasses} disabled={!showNext}>
             <ArrowRight className={`h-5 w-5 ${showNext ? activeArrowClasses : disabledArrowClasses}`} />
           </button>
