@@ -11,6 +11,7 @@ import member from './member'
 import galleryAlbum from './galleryAlbum'
 import sobreNos from './sobreNos'
 import { multiImageBlock, singleImageBlock, wideImageBlock } from './contentBlocks'
+import artigoAcademico from './artigoAcademico'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -27,6 +28,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     sobreNos,
     singleImageBlock,
     multiImageBlock,
-    wideImageBlock
+    wideImageBlock,
+    artigoAcademico
   ],
 }

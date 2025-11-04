@@ -28,6 +28,7 @@ export function Navbar() {
           <a href="/editais" className="hover:text-gray-950 hover:font-semibold transition-all">Editais</a>
           <a href="/galeria" className="hover:text-gray-950 hover:font-semibold transition-all">Galeria</a>
           <a href="/nucleos" className="hover:text-gray-950 hover:font-semibold transition-all">Núcleos</a>
+          <a href="/artigos" className="hover:text-gray-950 hover:font-semibold transition-all">Artigos</a>
         </nav>
 
         <div className="lg:hidden h-full flex items-center"> {/*Mudei de md para lg*/}
@@ -50,6 +51,7 @@ export function Navbar() {
                 <a href="/editais">Editais</a>
                 <a href="/galeria">Galeria</a>
                 <a href="/nucleos">Núcleos</a>
+                <a href="/artigos">Artigos</a>
                 <hr className="w-70 border-gray-700 my-4"/>
                 <span className="font-light w-full text-center max-w-xs mx-auto">
                     Incubadora Tecnológica para o Fortalecimento dos Empreendimentos Econômicos Solidários do IFRN

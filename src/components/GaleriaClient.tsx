@@ -233,8 +233,8 @@ export default function GaleriaClient({ initialAlbums, initialTotalCount, initia
             currentPage={currentPage}
             totalPages={totalPages}
             basePath="/galeria"
-        />
+            />
+        </div>
     </div>
-</div>
     );
 }

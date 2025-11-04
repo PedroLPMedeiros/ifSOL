@@ -57,11 +57,16 @@ export default async function NoticiasPage({searchParams}: {searchParams: {page?
             <p className="text-center text-gray-500">Nenhuma notícia encontrada.</p>
           )}
         </div>
-            <Pagination 
+            {/* <Pagination 
+            currentPage={page} 
+            totalPages={totalPages} 
+            basePath="/noticias"/> */}
+      </div>
+
+      <Pagination //adicionando pagination no final da página 
             currentPage={page} 
             totalPages={totalPages} 
             basePath="/noticias"/>
-      </div>
       <Footer />
       <BackToTopButton />
     </main>

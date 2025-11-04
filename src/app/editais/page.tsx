@@ -217,7 +217,7 @@
 //       <BackToTopButton />
 //     </main>
 //   );
-// }
+// } 
 
 import { client } from "@/lib/sanity.client";
 import groq from "groq";
