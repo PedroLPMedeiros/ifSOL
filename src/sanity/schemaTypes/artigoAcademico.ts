@@ -22,8 +22,12 @@ export default defineType({
         defineField({
             name: 'description',
             title: 'Resumo (Abstract)',
-            type: 'string',
-            description: 'Forneça um breve resumo do artigo acadêmico.',
+            type: 'array',
+            of: [{
+                type: 'block'
+            }],
+            // type: 'string',
+            // description: 'Forneça um breve resumo do artigo acadêmico.',
         }),
         defineField({
             name: "authors",

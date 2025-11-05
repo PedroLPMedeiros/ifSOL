@@ -7,6 +7,7 @@ import groq from "groq";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { FileText } from "lucide-react"; 
+import { PortableText } from '@portabletext/react';
 
 export const revalidate = 0;
 
@@ -14,7 +15,8 @@ export const revalidate = 0;
 interface Artigo {
   _id: string;
   title: string;
-  description: string; 
+  // description: string; 
+  description: any[];
   slug: { current: string };
   publicationDate: string;
   authors: string[];
@@ -80,7 +82,10 @@ export default async function ArtigoPage({ params }: { params: { slug: string } 
           
           
           <h2 className="text-3xl font-bold mb-4 text-green-800">Resumo</h2>
-          <p className="text-lg text-gray-700 mb-12 text-justify">{artigo.description}</p>
+          <div className="text-lg text-gray-700 mb-12 text-justify">
+            <PortableText value={artigo.description}/>
+          </div>
+          {/* <p className="text-lg text-gray-700 mb-12 text-justify">{artigo.description}</p> */}
           
           
           {artigo.keywords && artigo.keywords.length > 0 && (

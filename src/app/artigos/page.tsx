@@ -28,7 +28,7 @@ async function fetchInitialData(
         "artigos": *[_type == "artigoAcademico" ${filterConditions ? `&& ${filterConditions}` : ''}] | order(createdAt desc) [${(page - 1) * ITEMS_PER_PAGE}...${page * ITEMS_PER_PAGE}] {
             _id,
             title,
-            description,
+            "description": pt::text(description),
             "slug": slug.current,
             publicationDate,
             campus->{name},
