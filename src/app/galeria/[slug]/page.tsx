@@ -56,7 +56,7 @@ export default async function AlbumPage({ params }: { params: { slug: string } }
         </div>
 
        
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-7xl mx-auto">
           {album.images.map((image, index) => (
             <div key={index} className="relative aspect-square rounded-lg overflow-hidden shadow-lg">
               <Image
