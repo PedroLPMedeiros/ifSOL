@@ -80,7 +80,7 @@ export function ArtigosClient ({
             const artigosQuery = groq`
                 *[_type == "artigoAcademico" ${filterConditions ? `&& ${filterConditions}` : ''}] 
                 | order(_createdAt desc) [${(currentPage - 1) * ITEMS_PER_PAGE}...${currentPage * ITEMS_PER_PAGE}] {
-                    _id, title, description, "slug": slug.current, publicationDate, campus->{name}
+                    _id, title, "description": pt::text(description), "slug": slug.current, publicationDate, campus->{name}
                 }
             `;
 
