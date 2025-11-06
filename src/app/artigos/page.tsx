@@ -25,7 +25,7 @@ async function fetchInitialData(
 
     const InitalQueries =  groq`
     {
-        "artigos": *[_type == "artigoAcademico" ${filterConditions ? `&& ${filterConditions}` : ''}] | order(createdAt desc) [${(page - 1) * ITEMS_PER_PAGE}...${page * ITEMS_PER_PAGE}] {
+        "artigos": *[_type == "artigoAcademico" ${filterConditions ? `&& ${filterConditions}` : ''}] | order(_createdAt desc) [${(page - 1) * ITEMS_PER_PAGE}...${page * ITEMS_PER_PAGE}] {
             _id,
             title,
             "description": pt::text(description),
