@@ -46,7 +46,7 @@ export function Navbar() {
               </SheetHeader>
               <nav className="flex flex-col items-center gap-6 text-xl">
                 <a href="/">Início</a>
-                <a href="sobreNos">Sobre Nós</a>
+                <a href="/sobreNos">Sobre Nós</a>
                 <a href="/noticias">Notícias</a>
                 <a href="/editais">Editais</a>
                 <a href="/galeria">Galeria</a>
