@@ -50,8 +50,10 @@ const postQuery = groq`
   }
 `;
 
-export default async function PostPage({ params }: { params: { slug: string } }) {
-  const {post, recentPosts} = await client.fetch(postQuery, {slug: params.slug});
+// export default async function PostPage({ params }: { params: { slug: string } }) {
+export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) { //added
+  const resolvedParams = await params; //added
+  const {post, recentPosts} = await client.fetch(postQuery, {slug: resolvedParams.slug}); //antes era params.slug
 
   if (!post) {
     notFound();

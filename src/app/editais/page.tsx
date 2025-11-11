@@ -44,13 +44,24 @@ async function fetchInitialData(
     return data;
 }
 
-export default async function EditaisPage({ searchParams }: { 
-    searchParams: { tipos?: string; campi?: string; page?: string }
-}) {
+// export default async function EditaisPage({ searchParams }: { 
+//     searchParams: { tipos?: string; campi?: string; page?: string }
+// }) {
+
+export default async function EditaisPage({ 
+    searchParams 
+}: { 
+    searchParams: Promise<{ tipos?: string; campi?: string; page?: string }>
+}) { //added
     
-    const tipos = searchParams.tipos?.split(',').filter(Boolean) || [];
-    const campi = searchParams.campi?.split(',').filter(Boolean) || [];
-    const page = Number(searchParams.page) || 1;
+    // const tipos = searchParams.tipos?.split(',').filter(Boolean) || [];
+    // const campi = searchParams.campi?.split(',').filter(Boolean) || [];
+    // const page = Number(searchParams.page) || 1;
+
+    const params = await searchParams; //added
+    const tipos = params.tipos?.split(',').filter(Boolean) || []; //changed
+    const campi = params.campi?.split(',').filter(Boolean) || []; //changed
+    const page = Number(params.page) || 1; //changed
 
     const initialData = await fetchInitialData(tipos, campi, page);
 
