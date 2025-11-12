@@ -40,8 +40,11 @@ const nucleoQuery = groq`*[_type == "nucleoAcademico" && slug.current == $slug][
   instagramUrl
 }`;
 
-export default async function NucleoPage({ params }: { params: { slug: string } }) {
-  const nucleo: Nucleo = await client.fetch(nucleoQuery, { slug: params.slug });
+// export default async function NucleoPage({ params }: { params: { slug: string } }) {
+export default async function NucleoPage({ params }: { params: Promise<{ slug: string }> }){ //Added
+  
+  const resolvedParams = await params; //Added
+  const nucleo: Nucleo = await client.fetch(nucleoQuery, { slug: resolvedParams.slug }); //Era params.slug
 
   if (!nucleo) {
     notFound();
