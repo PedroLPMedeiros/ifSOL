@@ -44,8 +44,10 @@ const artigoQuery = groq`*[_type == "artigoAcademico" && slug.current == $slug][
   }
 }`;
 
-export default async function ArtigoPage({ params }: { params: { slug: string } }) {
-  const artigo: Artigo = await client.fetch(artigoQuery, { slug: params.slug });
+// export default async function ArtigoPage({ params }: { params: { slug: string } }) {
+export default async function ArtigoPage({ params }: { params: Promise<{ slug: string }> }){ //Added
+  const resolvedParams = await params; //Added
+  const artigo: Artigo = await client.fetch(artigoQuery, { slug: resolvedParams.slug }); //changed
 
   if (!artigo) {
     notFound();
