@@ -107,7 +107,7 @@ export function ActivitiesCarousel({ activities }: ActivitiesCarouselProps) {
             disabled={prevBtnDisabled}
             aria-label="Anterior"
           >
-            <ArrowLeft className="h-5 w-5 text-gray-700" />
+            <ArrowLeft className="h-5 w-5 text-gray-700 cursor-pointer" />
           </button>
 
           <button
@@ -120,7 +120,7 @@ export function ActivitiesCarousel({ activities }: ActivitiesCarouselProps) {
             disabled={nextBtnDisabled}
             aria-label="Próximo"
           >
-            <ArrowRight className="h-5 w-5 text-gray-700" />
+            <ArrowRight className="h-5 w-5 text-gray-700 cursor-pointer" />
           </button>
 
           <div className="sm:hidden mt-4 text-center">
