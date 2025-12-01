@@ -29,15 +29,15 @@ const countQuery = groq`count(*[_type == "post"])`;
 const postsPerPage = 8;
 
 
-// export default async function NoticiasPage({searchParams}: {searchParams: {page?: string} }) {
+
 export default async function NoticiasPage({
   searchParams
 }: {
   searchParams: Promise<{ page?: string }>
-}) { //added
+}) { 
 
-    const params = await searchParams; //added
-    const page = parseInt(params.page || '1', 10); //antes era searchParams.page
+    const params = await searchParams; 
+    const page = parseInt(params.page || '1', 10); 
     const start = (page - 1) * postsPerPage;
     const end = start + postsPerPage;
 

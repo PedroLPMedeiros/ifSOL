@@ -32,11 +32,11 @@ const albumQuery = groq`*[_type == "galleryAlbum" && slug.current == $slug][0]{
   }
 }`;
 
-// export default async function AlbumPage({ params }: { params: { slug: string } }) {
-export default async function AlbumPage({ params }: { params: Promise<{ slug: string }> }) { //Added
+
+export default async function AlbumPage({ params }: { params: Promise<{ slug: string }> }) { 
   
-  const resolvedParams = await params; //Added
-  const album: Album = await client.fetch(albumQuery, { slug: resolvedParams.slug }); //Era params.slug
+  const resolvedParams = await params; 
+  const album: Album = await client.fetch(albumQuery, { slug: resolvedParams.slug }); 
 
   if (!album || !album.images || album.images.length === 0) {
     

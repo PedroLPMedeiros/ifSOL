@@ -15,7 +15,6 @@ export const revalidate = 0;
 interface Artigo {
   _id: string;
   title: string;
-  // description: string; 
   description: any[];
   slug: { current: string };
   publicationDate: string;
@@ -44,10 +43,10 @@ const artigoQuery = groq`*[_type == "artigoAcademico" && slug.current == $slug][
   }
 }`;
 
-// export default async function ArtigoPage({ params }: { params: { slug: string } }) {
-export default async function ArtigoPage({ params }: { params: Promise<{ slug: string }> }){ //Added
+
+export default async function ArtigoPage({ params }: { params: Promise<{ slug: string }> }){ 
   const resolvedParams = await params; //Added
-  const artigo: Artigo = await client.fetch(artigoQuery, { slug: resolvedParams.slug }); //changed
+  const artigo: Artigo = await client.fetch(artigoQuery, { slug: resolvedParams.slug }); 
 
   if (!artigo) {
     notFound();
@@ -87,7 +86,7 @@ export default async function ArtigoPage({ params }: { params: Promise<{ slug: s
           <div className="text-lg text-gray-700 mb-12 text-justify">
             <PortableText value={artigo.description}/>
           </div>
-          {/* <p className="text-lg text-gray-700 mb-12 text-justify">{artigo.description}</p> */}
+          
           
           
           {artigo.keywords && artigo.keywords.length > 0 && (

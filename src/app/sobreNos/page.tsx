@@ -1,7 +1,7 @@
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { BackToTopButton } from "@/components/BackToTopButton";
-import { AboutSection } from "@/components/AboutSections"; // Assume que este é o componente de display
+import { AboutSection } from "@/components/AboutSections"; 
 import { client } from "@/lib/sanity.client";
 import groq from "groq";
 

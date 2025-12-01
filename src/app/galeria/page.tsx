@@ -35,15 +35,13 @@ const albumsQuery = groq`
  }
 `;
 
-// async function fetchInitialData(
-//     searchParams: { campus?: string; year?: string; page?: string }
-// ) {
-async function fetchInitialData( //Added
+
+async function fetchInitialData( 
     resolvedParams: { campus?: string; year?: string; page?: string }
 ) {
-    const campusNames = resolvedParams.campus?.split(',').filter(Boolean) || null; //Era searchParams
-    const yearsArray = resolvedParams.year?.split(',').filter(Boolean).map(Number) || null; //Era searchParams
-    const page = Number(resolvedParams.page) || 1; //Era searchParams.page
+    const campusNames = resolvedParams.campus?.split(',').filter(Boolean) || null; 
+    const yearsArray = resolvedParams.year?.split(',').filter(Boolean).map(Number) || null; 
+    const page = Number(resolvedParams.page) || 1; 
 
     const offset = (page - 1) * PER_PAGE;
     const limit = offset + PER_PAGE;
@@ -71,11 +69,11 @@ async function fetchInitialData( //Added
 
 
 export default async function GaleriaPage({ searchParams }: { 
-    // searchParams: { campus?: string; year?: string; page?: string }
-    searchParams: Promise<{ campus?: string; year?: string; page?: string }> //Added
+    
+    searchParams: Promise<{ campus?: string; year?: string; page?: string }> 
 }) {
-    const params = await searchParams; //Added
-    const initialData = await fetchInitialData(params); //Era searchParams
+    const params = await searchParams; 
+    const initialData = await fetchInitialData(params); 
 
     return (
         <main className="min-h-screen flex flex-col">

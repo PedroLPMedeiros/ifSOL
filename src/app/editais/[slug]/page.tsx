@@ -35,10 +35,10 @@ const editalQuery = groq`*[_type == "edital" && slug.current == $slug][0]{
   }
 }`;
 
-// export default async function EditalPage({ params }: { params: { slug: string } }) {
-export default async function EditalPage({ params }: { params: Promise<{ slug: string }> }){ //added
+
+export default async function EditalPage({ params }: { params: Promise<{ slug: string }> }){ 
   const resolvedParams = await params; //added
-  const edital: Edital = await client.fetch(editalQuery, { slug: resolvedParams.slug }); //antes era params.slug
+  const edital: Edital = await client.fetch(editalQuery, { slug: resolvedParams.slug }); 
 
   if (!edital) {
     notFound();

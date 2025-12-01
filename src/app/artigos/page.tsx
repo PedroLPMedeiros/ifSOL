@@ -63,13 +63,13 @@ async function fetchInitialData(
 }
     
 export default async function ArtigosPage({ searchParams }: {
-    // searchParams: {anos?: string; campi?: string; page?: string}
+    
     searchParams: Promise<{anos?: string; campi?: string; page?: string}>
 }) {
     const params = await searchParams;
-    const anos = params.anos?.split(',').filter(Boolean) || []; //Era searchParams.anos
-    const campi = params.campi?.split(',').filter(Boolean) || []; //Era searchParams
-    const page = Number(params.page) || 1; //Era searchParams
+    const anos = params.anos?.split(',').filter(Boolean) || []; 
+    const campi = params.campi?.split(',').filter(Boolean) || []; 
+    const page = Number(params.page) || 1; 
 
     const initialData = await fetchInitialData(anos, campi, page);
 
