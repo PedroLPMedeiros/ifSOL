@@ -7,7 +7,6 @@ import { client } from "@/lib/sanity.client";
 import groq from "groq";
 import { AboutSection } from "@/components/AboutSections";
 import { ActivitiesCarousel } from "@/components/ActivityCarousel";
-// import { InstagramCarousel } from "@/components/InstagramCarousel";
 import { Footer } from "@/components/Footer";
 import { BackToTopButton } from "@/components/BackToTopButton";
 
@@ -51,7 +50,6 @@ export default async function Home() {
       <PostCarousel posts={postsData} /> 
       <AboutSection data={homepageData?.aboutSections}/>
       <ActivitiesCarousel activities={homepageData?.activities}/>
-      {/* <InstagramCarousel posts={dummyInstagramPosts}/> */}
       <Footer/>
       <BackToTopButton/>
     </main>
