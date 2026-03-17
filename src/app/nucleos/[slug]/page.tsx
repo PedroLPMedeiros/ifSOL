@@ -13,7 +13,15 @@ import { ActivitiesCarousel } from "@/components/ActivityCarousel";
 import { MemberCard } from "@/components/MemberCard";
 import { FaInstagram } from "react-icons/fa";
 
-export const revalidate = 0;
+// export const revalidate = 0;
+export async function generateStaticParams() {
+  const query = groq`*[_type == "nucleoAcademico"]{ "slug": slug.current }`;
+  const nucleos = await client.fetch(query);
+
+  return nucleos.map((nucleos: { slug: string }) => ({
+    slug: nucleos.slug,
+  }));
+} //novo
 
 interface Nucleo {
   _id: string;

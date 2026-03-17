@@ -9,6 +9,16 @@ import Link from "next/link";
 
 // export const revalidate = 0;
 
+export async function generateStaticParams() {
+  // Ajuste o _type para o nome exato do esquema de editais no seu Sanity
+  const query = groq`*[_type == "edital"]{ "slug": slug.current }`;
+  const editais = await client.fetch(query);
+
+  return editais.map((edital: { slug: string }) => ({
+    slug: edital.slug,
+  }));
+} //novo
+
 interface Edital {
   _id: string;
   title: string;

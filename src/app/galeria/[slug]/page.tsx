@@ -9,6 +9,14 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 
 // export const revalidate = 0;
+export async function generateStaticParams() {
+  const query = groq`*[_type == "galleryAlbum"]{ "slug": slug.current }`;
+  const albums = await client.fetch(query);
+
+  return albums.map((album: { slug: string }) => ({
+    slug: album.slug,
+  }));
+} //novo
 
 interface AlbumImage {
   url: string;

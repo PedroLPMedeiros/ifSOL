@@ -11,6 +11,14 @@ import Link from "next/link";
 
 // export const revalidate = 0;
 export const dynamic = 'force-static'; //era revalidate = 0, mas para o github pages, que é um host de site estático, precisamos forçar a geração estática completa, sem revalidação. Assim, garantimos que o site funcione corretamente no ambiente do github pages, onde não há suporte para funcionalidades dinâmicas ou revalidação incremental.
+export async function generateStaticParams() {
+  const query = groq`*[_type == "post"]{ "slug": slug.current }`;
+  const post = await client.fetch(query);
+
+  return post.map((album: { slug: string }) => ({
+    slug: post.slug,
+  }));
+}
 
 interface Post {
   _id: string;
