@@ -6,7 +6,7 @@ import { Footer } from '@/components/Footer';
 import { BackToTopButton } from '@/components/BackToTopButton';
 import {ArtigosClient} from "@/components/ArtigosClient"
 
-export const revalidate = 60;
+export const dynamic = 'force-static'; //era revalidate = 600, mas para o github pages, que é um host de site estático, precisamos forçar a geração estática completa, sem revalidação. Assim, garantimos que o site funcione corretamente no ambiente do github pages, onde não há suporte para funcionalidades dinâmicas ou revalidação incremental.
 
 const ITEMS_PER_PAGE = 6;
 
@@ -62,16 +62,42 @@ async function fetchInitialData(
     };
 }
     
-export default async function ArtigosPage({ searchParams }: {
+// export default async function ArtigosPage({ searchParams }: {
     
-    searchParams: Promise<{anos?: string; campi?: string; page?: string}>
-}) {
-    const params = await searchParams;
-    const anos = params.anos?.split(',').filter(Boolean) || []; 
-    const campi = params.campi?.split(',').filter(Boolean) || []; 
-    const page = Number(params.page) || 1; 
+//     searchParams: Promise<{anos?: string; campi?: string; page?: string}>
+// }) {
+//     const params = await searchParams;
+//     const anos = params.anos?.split(',').filter(Boolean) || []; 
+//     const campi = params.campi?.split(',').filter(Boolean) || []; 
+//     const page = Number(params.page) || 1; 
 
-    const initialData = await fetchInitialData(anos, campi, page);
+//     const initialData = await fetchInitialData(anos, campi, page);
+
+//     return (
+//         <main className='min-h-screen flex flex-col'>
+//             <Navbar />
+//             <Suspense fallback={
+//                 <div className='container mx-auto px-8 py-12 flex-grow'>
+//                     <p className='text-center text-cl text-gray-600'>Carregando filtros e artigos...</p>
+//                 </div>
+//             }>
+//                 <ArtigosClient
+//                     initialArtigos={initialData.artigos}
+//                     initialTotalItems={initialData.totalItems}
+//                     initialYears={initialData.initialYears}
+//                     initialCampi={initialData.initialCampi}
+//                 />
+//             </Suspense>
+//             <Footer />
+//             <BackToTopButton />
+//         </main>
+//     );
+// }
+
+export default async function ArtigosPage() {
+    // No modo static export, ignoramos os searchParams no servidor.
+    // O componente ArtigosClient cuidará dos estados de filtro no navegador.
+    const initialData = await fetchInitialData([], [], 1);
 
     return (
         <main className='min-h-screen flex flex-col'>

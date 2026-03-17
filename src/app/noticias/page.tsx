@@ -6,7 +6,9 @@ import { Pagination } from "@/components/Pagination";
 import { client } from "@/lib/sanity.client";
 import groq from "groq";
 
-export const revalidate = 0;
+// export const revalidate = 0;
+export const dynamic = 'force-static';
+
 
 interface Post {
   _id: string;
@@ -30,24 +32,64 @@ const postsPerPage = 8;
 
 
 
-export default async function NoticiasPage({
-  searchParams
-}: {
-  searchParams: Promise<{ page?: string }>
-}) { 
+// export default async function NoticiasPage({
+//   searchParams
+// }: {
+//   searchParams: Promise<{ page?: string }>
+// }) { 
 
-    const params = await searchParams; 
-    const page = parseInt(params.page || '1', 10); 
-    const start = (page - 1) * postsPerPage;
-    const end = start + postsPerPage;
+//     const params = await searchParams; 
+//     const page = parseInt(params.page || '1', 10); 
+//     const start = (page - 1) * postsPerPage;
+//     const end = start + postsPerPage;
+
+//     const [posts, totalPosts] = await Promise.all([
+//         client.fetch(postsQuery, {start, end}),
+//         client.fetch(countQuery),
+//     ]);
+
+//     console.log('Posts:', posts);
+//     console.log('Total de posts:', totalPosts);
+
+//     const totalPages = Math.ceil(totalPosts / postsPerPage);
+
+//   return (
+//     <main className="min-h-screen flex flex-col">
+//       <Navbar />
+//       <div className="container mx-auto px-8 py-12 flex-grow">
+//         <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 text-green-800">Todas as Notícias</h2>
+//         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+//           {posts.length > 0 ? (
+//             posts.map((post: Post) => (
+//               <NewsCard key={post._id} post={post} />
+//             ))
+//           ) : (
+//             <p className="text-center text-gray-500">Nenhuma notícia encontrada.</p>
+//           )}
+//         </div>
+            
+//       </div>
+
+//       <Pagination
+//             currentPage={page} 
+//             totalPages={totalPages} 
+//             basePath="/noticias"/>
+//       <Footer />
+//       <BackToTopButton />
+//     </main>
+//   );
+// }
+
+export default async function NoticiasPage() { 
+    // No GitHub Pages (estático), geramos a página inicial (page 1) por padrão no build
+    const page = 1; 
+    const start = 0;
+    const end = postsPerPage;
 
     const [posts, totalPosts] = await Promise.all([
         client.fetch(postsQuery, {start, end}),
         client.fetch(countQuery),
     ]);
-
-    console.log('Posts:', posts);
-    console.log('Total de posts:', totalPosts);
 
     const totalPages = Math.ceil(totalPosts / postsPerPage);
 
@@ -65,7 +107,6 @@ export default async function NoticiasPage({
             <p className="text-center text-gray-500">Nenhuma notícia encontrada.</p>
           )}
         </div>
-            
       </div>
 
       <Pagination

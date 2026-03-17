@@ -1,4 +1,4 @@
-
+export const dynamic = 'force-static';
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { BackToTopButton } from "@/components/BackToTopButton";
@@ -7,7 +7,7 @@ import groq from "groq";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 
-export const revalidate = 0;
+// export const revalidate = 0;
 
 interface Edital {
   _id: string;

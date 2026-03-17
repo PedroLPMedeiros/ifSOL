@@ -1,3 +1,5 @@
+export const dynamic = 'force-static'; //era revalidate = 0, mas para o github pages, que é um host de site estático, precisamos forçar a geração estática completa, sem revalidação. Assim, garantimos que o site funcione corretamente no ambiente do github pages, onde não há suporte para funcionalidades dinâmicas ou revalidação incremental.
+
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { BackToTopButton } from "@/components/BackToTopButton";
@@ -6,7 +8,7 @@ import { client } from "@/lib/sanity.client";
 import groq from "groq";
 
 
-export const revalidate = 0; 
+// export const revalidate = 0; 
 
 interface SobreNosData {
   title: string;
