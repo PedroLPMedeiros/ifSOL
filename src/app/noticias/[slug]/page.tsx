@@ -15,7 +15,7 @@ export async function generateStaticParams() {
   const query = groq`*[_type == "post"]{ "slug": slug.current }`;
   const post = await client.fetch(query);
 
-  return post.map((album: { slug: string }) => ({
+  return post.map((post: { slug: string }) => ({
     slug: post.slug,
   }));
 }
