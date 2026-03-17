@@ -4,6 +4,7 @@ const nextConfig: NextConfig = {
 
   output: 'export', //mudança para o github pages
   basePath: '/ifSOL', //mudança para o github pages
+  trailingSlash: true, //para garantir que as URLs terminem com uma barra, o que é importante para o github pages
   
   images: {
     unoptimized: true,  //mudança para github pages, para não dar erro de build, já que o github pages não suporta imagens otimizadas
