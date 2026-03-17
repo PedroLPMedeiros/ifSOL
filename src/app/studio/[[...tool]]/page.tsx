@@ -1,8 +1,12 @@
+export const dynamic = 'force-static'
+export function generateStaticParams() {
+  return[{ tool: []}];
+}
 
 import { NextStudio } from 'next-sanity/studio'
 import config from '../../../../sanity.config'
 
-export const dynamic = 'force-static'
+//export const dynamic = 'force-static'
 
 export { metadata, viewport } from 'next-sanity/studio'
 
