@@ -3,6 +3,8 @@ name: Deploy Next.js site to Pages
 on:
   push:
     branches: ["main"]
+  repository_dispatch:
+    types: [sanity_update] #novo, para disparar o workflow quando houver uma atualização no Sanity, usando o dispatch do revalidation
   workflow_dispatch:
 
 permissions:
