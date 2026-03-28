@@ -9,3 +9,4 @@ No site será possível verificar as novidades sobre a IFSOL, ter acesso a novos
 Acesse o site a partir do link a seguir: https://pedrolpmedeiros.github.io/ifSOL/
 
 Desenvolvedor do site: Pedro Lucas P. de Medeiros
+Orientadora do Projeto: Bianca C. Santiago
